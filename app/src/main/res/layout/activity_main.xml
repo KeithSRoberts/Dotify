@@ -12,11 +12,21 @@
         tools:context=".MainActivity">
 
         <TextView
+            android:id="@+id/username"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="first_avenger"
             android:textColor="#000000"
             android:textSize="18sp"
+            app:layout_constraintBaseline_toBaselineOf="@id/button"
+            app:layout_constraintLeft_toLeftOf="parent" />
+
+        <EditText
+            android:id="@+id/editText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPersonName"
             app:layout_constraintBaseline_toBaselineOf="@id/button"
             app:layout_constraintLeft_toLeftOf="parent" />
 
