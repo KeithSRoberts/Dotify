@@ -6,6 +6,7 @@
     android:layout_height="match_parent">
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraint"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="16dp"
@@ -85,7 +86,7 @@
             android:textSize="18sp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/textView2" />
+            app:layout_constraintTop_toBottomOf="@id/guideline" />
 
         <ImageView
             android:id="@+id/imageView2"
@@ -118,6 +119,13 @@
             app:layout_constraintLeft_toRightOf="@id/imageView3"
             app:layout_constraintRight_toRightOf="parent"
             app:srcCompat="@drawable/ic_next" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="465dp" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
