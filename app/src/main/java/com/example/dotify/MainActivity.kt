@@ -6,6 +6,7 @@ import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
+import org.w3c.dom.Text
 import java.util.*
 
 
@@ -13,57 +14,58 @@ class MainActivity : AppCompatActivity() {
 
     private val min = 0;
     private val max = 1000;
+    private lateinit var playNums : TextView;
+    private lateinit var nextButton: ImageView;
+    private lateinit var prevButton: ImageView;
+    private lateinit var playButton: ImageView;
+    private lateinit var coverImage: ImageView;
+    private lateinit var parentCL: ConstraintLayout;
+    private lateinit var changeUserButton: Button;
+    private lateinit var usernameText: TextView;
+    private lateinit var editUsername: EditText;
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        playNums = findViewById(R.id.playNums)
+        nextButton = findViewById(R.id.nextButton);
+        prevButton = findViewById(R.id.prevButton);
+        playButton = findViewById(R.id.playButton);
+        parentCL = findViewById(R.id.constraint);
+        coverImage = findViewById(R.id.albumCoverImage);
+        changeUserButton = findViewById(R.id.enableEditButton);
+        usernameText = findViewById(R.id.username);
+        editUsername = findViewById(R.id.editUsername);
 
         // Set initial random play count
         var randomPlays: Int = Random().nextInt(max - min + 1) + min;
-        val playNums: TextView = findViewById(R.id.textView3)
         playNums.text = "$randomPlays plays";
 
         // Change user functionality
-        val changeUserButton: Button = findViewById(R.id.button);
-        val usernameText: TextView = findViewById(R.id.username);
-        val editText: EditText = findViewById(R.id.editText);
-        editText.visibility = View.GONE;
-        changeUserButton.setOnClickListener() {
-            if (changeUserButton.text == "Change User") {
-                changeUserButton.text = "Apply";
-                editText.setText("");
-                usernameText.visibility = View.GONE;
-                editText.visibility = View.VISIBLE;
-            } else if (changeUserButton.text == "Apply" && editText.text.toString() != "") {
-                changeUserButton.text = "Change User";
-                usernameText.text = editText.text;
-                editText.visibility = View.GONE;
-                usernameText.visibility = View.VISIBLE;
-            }
-        }
+       initChangeUser();
 
         // Next button functionality
-        val nextButton: ImageView = findViewById(R.id.imageView4);
         nextButton.setOnClickListener() {
-            Toast.makeText(applicationContext,"Skipping to next track", Toast.LENGTH_SHORT).show();
+            makeToast("Skipping to next track")
         }
 
         // Previous button functionality
-        val prevButton: ImageView = findViewById(R.id.imageView2);
         prevButton.setOnClickListener() {
-            Toast.makeText(applicationContext,"Skipping to previous track", Toast.LENGTH_SHORT).show();
+            makeToast("Skipping to previous track")
         }
 
         // Play button functionality
-        val playButton: ImageView = findViewById(R.id.imageView3);
         playButton.setOnClickListener() {
             randomPlays++;
             playNums.text = "$randomPlays plays";
         }
 
         // Cover image long press functionality
-        val parentCL: ConstraintLayout = findViewById(R.id.constraint);
-        val coverImage: ImageView = findViewById(R.id.imageView);
+        initTextColorChange()
+    }
+
+    private fun initTextColorChange() {
         coverImage.setOnLongClickListener() {
             val rnd = Random()
             val color: Int = Color.argb(255, rnd.nextInt(256), rnd.nextInt(256), rnd.nextInt(256))
@@ -75,5 +77,26 @@ class MainActivity : AppCompatActivity() {
             }
             true
         }
+    }
+
+    private fun initChangeUser() {
+        editUsername.visibility = View.GONE;
+        changeUserButton.setOnClickListener() {
+            if (changeUserButton.text == "Change User") {
+                changeUserButton.text = "Apply";
+                editUsername.setText("");
+                usernameText.visibility = View.GONE;
+                editUsername.visibility = View.VISIBLE;
+            } else if (changeUserButton.text == "Apply" && editUsername.text.toString() != "") {
+                changeUserButton.text = "Change User";
+                usernameText.text = editUsername.text;
+                editUsername.visibility = View.GONE;
+                usernameText.visibility = View.VISIBLE;
+            }
+        }
+    }
+
+    private fun makeToast(text: String) {
+        Toast.makeText(applicationContext, text, Toast.LENGTH_SHORT).show();
     }
 }
