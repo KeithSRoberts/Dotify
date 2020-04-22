@@ -43,10 +43,11 @@ class SongListActivity : AppCompatActivity() {
         // Long click listener functionality for deleting a song in the list
         songListAdapter.onSongLongClickListener = { song ->
             val newSongList = allSongs.toMutableList()
-            for (currSong in newSongList) {
+            val songListIterator = newSongList.iterator()
+            for (currSong in songListIterator) {
                 if (currSong.id == song.id) {
-                    newSongList.remove(currSong)
                     val title = currSong.title
+                    songListIterator.remove()
                     Toast.makeText(this, "Removed song: $title", Toast.LENGTH_SHORT).show()
                 }
             }

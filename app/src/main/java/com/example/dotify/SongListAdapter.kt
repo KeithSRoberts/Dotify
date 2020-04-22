@@ -24,6 +24,11 @@ class SongListAdapter(private var allSongs: List<Song>): RecyclerView.Adapter<So
             songArtist.text = song.artist
             albumCoverImage.setImageResource(song.smallImageID)
 
+            itemView.setOnLongClickListener {
+                onSongLongClickListener?.invoke(song)
+                true
+            }
+
             itemView.setOnClickListener {
                 onSongClickListener?.invoke(song)
             }
