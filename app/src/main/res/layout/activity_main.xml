@@ -1,16 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/constraint"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraint"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding="16dp"
-        tools:context=".MainActivity">
+    android:layout_height="match_parent"
+    android:paddingStart="15dp"
+    android:paddingTop="10dp"
+    android:paddingEnd="15dp"
+    tools:context=".MainActivity">
 
         <TextView
             android:id="@+id/username"
@@ -18,7 +17,7 @@
             android:layout_height="wrap_content"
             android:text="first_avenger"
             android:textColor="#000000"
-            android:textSize="18sp"
+            android:textSize="14sp"
             app:layout_constraintBaseline_toBaselineOf="@id/enableEditButton"
             app:layout_constraintLeft_toLeftOf="parent" />
 
@@ -41,28 +40,28 @@
 
         <ImageView
             android:id="@+id/albumCoverImage"
-            android:layout_width="0dp"
-            android:layout_height="350dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:contentDescription="albumcover"
-            android:scaleType="fitXY"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            android:padding="15dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@id/enableEditButton"
             app:srcCompat="@drawable/blonde" />
 
         <TextView
-            android:id="@+id/textView"
+            android:id="@+id/songTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Nights"
             android:textColor="#000000"
-            android:textSize="30sp"
+            android:textSize="22sp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@id/albumCoverImage" />
 
         <TextView
-            android:id="@+id/textView2"
+            android:id="@+id/songArtist"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ellipsize="end"
@@ -71,27 +70,27 @@
             android:singleLine="true"
             android:text="Frank Ocean"
             android:textColor="#000000"
-            android:textSize="18sp"
+            android:textSize="14sp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/textView" />
+            app:layout_constraintTop_toBottomOf="@id/songTitle" />
 
         <TextView
             android:id="@+id/playNums"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="10dp"
             android:text="# plays"
             android:textColor="#000000"
-            android:textSize="18sp"
+            android:textSize="14sp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/guideline" />
+            app:layout_constraintTop_toBottomOf="@id/songArtist" />
 
         <ImageView
             android:id="@+id/prevButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
             android:contentDescription="back_button"
             app:layout_constraintBottom_toBottomOf="@id/playButton"
             app:layout_constraintLeft_toLeftOf="parent"
@@ -101,9 +100,9 @@
 
         <ImageView
             android:id="@+id/playButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="15dp"
             android:contentDescription="play_button"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
@@ -112,20 +111,13 @@
 
         <ImageView
             android:id="@+id/nextButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
             android:contentDescription="next_button"
             app:layout_constraintBottom_toBottomOf="@id/prevButton"
             app:layout_constraintLeft_toRightOf="@id/playButton"
             app:layout_constraintRight_toRightOf="parent"
             app:srcCompat="@drawable/ic_next" />
 
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            app:layout_constraintGuide_begin="465dp" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
-</ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

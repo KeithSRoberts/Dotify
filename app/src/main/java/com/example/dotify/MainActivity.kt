@@ -23,7 +23,14 @@ class MainActivity : AppCompatActivity() {
     private lateinit var changeUserButton: Button;
     private lateinit var usernameText: TextView;
     private lateinit var editUsername: EditText;
+    private lateinit var songArtist: TextView;
+    private lateinit var songTitle: TextView;
 
+    companion object {
+        const val TITLE_KEY = "TITLE_KEY"
+        const val ARTIST_KEY = "ARTIST_KEY"
+        const val ALBUM_KEY = "ALBUM_KEY"
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,6 +44,14 @@ class MainActivity : AppCompatActivity() {
         changeUserButton = findViewById(R.id.enableEditButton);
         usernameText = findViewById(R.id.username);
         editUsername = findViewById(R.id.editUsername);
+        songArtist = findViewById(R.id.songArtist);
+        songTitle = findViewById(R.id.songTitle);
+
+        songTitle.text = intent.getStringExtra(TITLE_KEY)
+        songArtist.text = intent.getStringExtra(ARTIST_KEY)
+        val initialAlbumKey = intent.getIntExtra(ALBUM_KEY, -1)
+        coverImage.setImageResource(initialAlbumKey);
+
 
         // Set initial random play count
         var randomPlays: Int = Random().nextInt(max - min + 1) + min;
