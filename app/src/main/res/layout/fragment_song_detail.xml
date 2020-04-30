@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/constraint"
+    android:background="@color/white"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingStart="15dp"
+    android:paddingTop="10dp"
+    android:paddingEnd="15dp">
+
+        <ImageView
+            android:id="@+id/albumCoverImage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="albumcover"
+            android:padding="15dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/blonde" />
+
+        <TextView
+            android:id="@+id/songTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nights"
+            android:textColor="#000000"
+            android:textSize="22sp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/albumCoverImage" />
+
+        <TextView
+            android:id="@+id/songArtist"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:minLines="1"
+            android:scrollHorizontally="false"
+            android:singleLine="true"
+            android:text="Frank Ocean"
+            android:textColor="#000000"
+            android:textSize="14sp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/songTitle" />
+
+        <TextView
+            android:id="@+id/playNums"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="# plays"
+            android:textColor="#000000"
+            android:textSize="14sp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/songArtist" />
+
+        <ImageView
+            android:id="@+id/prevButton"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:contentDescription="back_button"
+            app:layout_constraintBottom_toBottomOf="@id/playButton"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@id/playButton"
+            app:layout_constraintTop_toTopOf="@id/playButton"
+            app:srcCompat="@drawable/ic_previous" />
+
+        <ImageView
+            android:id="@+id/playButton"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="15dp"
+            android:contentDescription="play_button"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/playNums"
+            app:srcCompat="@drawable/ic_play" />
+
+        <ImageView
+            android:id="@+id/nextButton"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:contentDescription="next_button"
+            app:layout_constraintBottom_toBottomOf="@id/prevButton"
+            app:layout_constraintLeft_toRightOf="@id/playButton"
+            app:layout_constraintRight_toRightOf="parent"
+            app:srcCompat="@drawable/ic_next" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

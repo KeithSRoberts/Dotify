@@ -52,5 +52,6 @@ class SongListAdapter(private var allSongs: List<Song>): RecyclerView.Adapter<So
         val result = DiffUtil.calculateDiff(callback)
         result.dispatchUpdatesTo(this)
         allSongs = newSongList
+        notifyDataSetChanged()
     }
 }
