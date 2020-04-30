@@ -1,2 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <dimen name="hBias">0.04</dimen>
+    <dimen name="albumMarginTop">0dp</dimen>
+    <dimen name="controlsVerticalStart">50dp</dimen>
+    <dimen name="controlsHorizontalStart">330dp</dimen>
+</resources>
