@@ -5,11 +5,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.example.dotify.DotifyApp
 import kotlinx.android.synthetic.main.fragment_song_list.*
 
-class SongListFragment : Fragment() {
+class SongListFragment : Fragment(), MusicManager.UpdatedListListener {
 
     private lateinit var songListAdapter: SongListAdapter
     private lateinit var songList : MutableList<Song>
@@ -26,6 +27,7 @@ class SongListFragment : Fragment() {
         super.onAttach(context)
         val dotifyApp = context.applicationContext as DotifyApp
         musicManager = dotifyApp.musicManager
+        musicManager.updatedListListener = this
         songList = musicManager.songList.toMutableList()
 
         if (context is OnSongClickListener) {
@@ -52,8 +54,19 @@ class SongListFragment : Fragment() {
         }
     }
 
+    override fun onListUpdate(updatedSongList: List<Song>) {
+        songList = updatedSongList.toMutableList()
+        songListAdapter.setNewSongs(songList)
+        musicManager.updateSongList(songList)
+    }
+
+    override fun onRequestError(error: String) {
+        Toast.makeText(context, error, Toast.LENGTH_SHORT).show()
+    }
+
     fun shuffleList() {
         songList.shuffle()
+        songListAdapter.setNewSongs(songList)
         musicManager.updateSongList(songList)
         rvSongList.scrollToPosition(0)
     }
