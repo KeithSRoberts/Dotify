@@ -11,9 +11,9 @@
     android:paddingEnd="15dp">
 
         <ImageView
-            android:id="@+id/albumCoverImage"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:id="@+id/largeAlbumCoverImage"
+            android:layout_width="@dimen/coverWidth"
+            android:layout_height="@dimen/coverHeight"
             android:contentDescription="albumcover"
             android:padding="15dp"
             android:layout_marginTop="@dimen/albumMarginTop"

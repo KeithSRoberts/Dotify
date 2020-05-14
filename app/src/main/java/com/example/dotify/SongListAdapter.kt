@@ -5,9 +5,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import com.squareup.picasso.Picasso
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.ericchee.songdataprovider.Song
 
 class SongListAdapter(private var allSongs: List<Song>): RecyclerView.Adapter<SongListAdapter.SongViewHolder>() {
 
@@ -22,7 +22,7 @@ class SongListAdapter(private var allSongs: List<Song>): RecyclerView.Adapter<So
         fun bind(song: Song) {
             songTitle.text = song.title
             songArtist.text = song.artist
-            albumCoverImage.setImageResource(song.smallImageID)
+            Picasso.get().load(song.smallImageURL).noFade().into(albumCoverImage)
 
             itemView.setOnLongClickListener {
                 onSongLongClickListener?.invoke(song)

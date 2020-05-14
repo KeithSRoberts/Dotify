@@ -7,8 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.fragment.app.Fragment
-import com.ericchee.songdataprovider.Song
 import com.example.dotify.DotifyApp
+import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.fragment_song_detail.*
 import kotlin.random.Random
 
@@ -23,7 +23,6 @@ class NowPlayingFragment : Fragment() {
     companion object {
         val TAG: String = NowPlayingFragment::class.java.simpleName
         const val SONG_PLAYS = "SONG_PLAYS"
-        const val SONG_KEY = "SONG_KEY"
     }
 
     override fun onAttach(context: Context?) {
@@ -35,14 +34,6 @@ class NowPlayingFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        // Take in song as fragment arg
-        arguments?.let {args ->
-            val song = args.getParcelable<Song>(SONG_KEY)
-            if (song != null) {
-                this.currSong = song
-            }
-        }
 
         // Check if there is a saved song play number, if not make a random number for plays
         if (savedInstanceState == null) {
@@ -65,6 +56,7 @@ class NowPlayingFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        currSong?.let { updateSong(it) }
         super.onViewCreated(view, savedInstanceState)
 
         playNums.text = randomNum.toString()
@@ -79,12 +71,6 @@ class NowPlayingFragment : Fragment() {
             makeToast("Skipping to previous track")
         }
 
-        arguments?.let {args ->
-            val song = args.getParcelable<Song>(SONG_KEY)
-            if (song != null) {
-                this.updateSong(song)
-            }
-        }
     }
 
     // Overriding so we an save our number of song plays between states
@@ -103,6 +89,6 @@ class NowPlayingFragment : Fragment() {
         this.currSong = song;
         songArtist.text = song.artist
         songTitle.text = song.title
-        albumCoverImage.setImageResource(song.largeImageID)
+        Picasso.get().load(song.largeImageURL).noFade().fit().into(largeAlbumCoverImage)
     }
 }

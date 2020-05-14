@@ -5,9 +5,11 @@ import com.example.dotify.MusicManager
 
 class DotifyApp : Application() {
     lateinit var musicManager: MusicManager
+    lateinit var apiManager: ApiManager
 
     override fun onCreate() {
         super.onCreate()
-        musicManager = MusicManager()
+        apiManager = ApiManager()
+        musicManager = MusicManager(apiManager.fetchSongs())
     }
 }

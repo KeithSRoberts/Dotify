@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.ericchee.songdataprovider.Song
 import com.example.dotify.DotifyApp
 import kotlinx.android.synthetic.main.fragment_song_list.*
 
@@ -34,20 +33,6 @@ class SongListFragment : Fragment() {
         }
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-        if (savedInstanceState == null) {
-            arguments?.let { args ->
-                songList = args.getParcelableArrayList<Song>(SONG_LIST_KEY) as MutableList<Song>
-            }
-        } else {
-            with(savedInstanceState) {
-                songList = getParcelableArrayList<Song>(SAVED_SONG_LIST) as MutableList<Song>
-            }
-        }
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -65,12 +50,6 @@ class SongListFragment : Fragment() {
         songListAdapter.onSongClickListener = { song ->
             onSongClickListener?.onSongClicked(song)
         }
-    }
-
-    // Override so that we can save our song list between states of our instance
-    override fun onSaveInstanceState(outState: Bundle) {
-        super.onSaveInstanceState(outState)
-        outState.putParcelableArrayList(SAVED_SONG_LIST, songList as ArrayList<Song>)
     }
 
     fun shuffleList() {

@@ -4,4 +4,6 @@
     <dimen name="albumMarginTop">0dp</dimen>
     <dimen name="controlsVerticalStart">50dp</dimen>
     <dimen name="controlsHorizontalStart">330dp</dimen>
+    <dimen name="coverWidth">280dp</dimen>
+    <dimen name="coverHeight">280dp</dimen>
 </resources>

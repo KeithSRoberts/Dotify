@@ -3,7 +3,6 @@ package com.example.dotify
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import com.ericchee.songdataprovider.Song
 import kotlinx.android.synthetic.main.activity_main_new.*
 
 // Implements OnSongClickListener
@@ -79,10 +78,6 @@ class MainSongActivity : AppCompatActivity(), OnSongClickListener {
             } else {
                 // Otherwise, create the player fragment to use and commit it the manager
                 val newPlayerFrag = NowPlayingFragment()
-                val newPlayerBundle = Bundle().apply {
-                    putParcelable(NowPlayingFragment.SONG_KEY, songCopy)
-                }
-                newPlayerFrag.arguments = newPlayerBundle
                 playerContainer.visibility = View.INVISIBLE
                 supportActionBar?.setDisplayHomeAsUpEnabled(true)
 

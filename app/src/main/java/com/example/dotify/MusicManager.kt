@@ -1,16 +1,8 @@
 package com.example.dotify
 
-import com.ericchee.songdataprovider.SongDataProvider
-import com.ericchee.songdataprovider.Song
-
-class MusicManager {
-    lateinit var songList: List<Song>
+class MusicManager(initSongList: List<Song>) {
+    var songList: List<Song> = initSongList
     var currentSong: Song? = null
-
-    init {
-        // Only call of getAllSongs()
-        songList = SongDataProvider.getAllSongs()
-    }
 
     fun play(song: Song) {
         currentSong = song
