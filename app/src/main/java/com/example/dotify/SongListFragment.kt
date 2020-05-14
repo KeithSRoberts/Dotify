@@ -7,12 +7,14 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.ericchee.songdataprovider.Song
+import com.example.dotify.DotifyApp
 import kotlinx.android.synthetic.main.fragment_song_list.*
 
 class SongListFragment : Fragment() {
 
     private lateinit var songListAdapter: SongListAdapter
     private lateinit var songList : MutableList<Song>
+    private lateinit var musicManager: MusicManager
     private var onSongClickListener: OnSongClickListener? = null
 
     companion object {
@@ -23,6 +25,9 @@ class SongListFragment : Fragment() {
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
+        val dotifyApp = context.applicationContext as DotifyApp
+        musicManager = dotifyApp.musicManager
+        songList = musicManager.songList.toMutableList()
 
         if (context is OnSongClickListener) {
             onSongClickListener = context
@@ -70,6 +75,7 @@ class SongListFragment : Fragment() {
 
     fun shuffleList() {
         songList.shuffle()
-        songListAdapter.setNewSongs(songList.toMutableList());
+        musicManager.updateSongList(songList)
+        rvSongList.scrollToPosition(0)
     }
 }

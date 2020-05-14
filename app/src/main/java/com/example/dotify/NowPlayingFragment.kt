@@ -1,12 +1,14 @@
 package com.example.dotify
 
 import android.os.Bundle
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.fragment.app.Fragment
 import com.ericchee.songdataprovider.Song
+import com.example.dotify.DotifyApp
 import kotlinx.android.synthetic.main.fragment_song_detail.*
 import kotlin.random.Random
 
@@ -22,6 +24,13 @@ class NowPlayingFragment : Fragment() {
         val TAG: String = NowPlayingFragment::class.java.simpleName
         const val SONG_PLAYS = "SONG_PLAYS"
         const val SONG_KEY = "SONG_KEY"
+    }
+
+    override fun onAttach(context: Context?) {
+        super.onAttach(context)
+        val dotifyApp = context?.applicationContext as DotifyApp
+        val musicManager = dotifyApp.musicManager
+        currSong = musicManager.currentSong
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
